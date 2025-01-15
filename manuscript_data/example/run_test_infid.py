@@ -110,7 +110,7 @@ evals, ket_gs = linalg.eigsh(
     Ham.to_sparse(), k=1, which="SA", tol=1e-32)
 
 psi0 = ket_gs[:,0]
-print('Ground state energy, calculated with Netket lanczos: ',evals[0])
+#print('Ground state energy, calculated with Netket lanczos: ',evals[0])
 
 if parity:
     basis_states = HilbertSpace.all_states()
@@ -125,7 +125,7 @@ if parity:
     psi0 = symmetrized_psi0/np.sqrt(symmetrized_psi0.conj().T@symmetrized_psi0)
     Ham_matrix = Ham.to_sparse()
     energy_symm = ((psi0.conj().T)@Ham_matrix)@psi0
-    print("symmetrized energy: ", energy_symm)
+    #print("symmetrized energy: ", energy_symm)
 
 
 # 5) --------------- Exact variational state ------------------------------------
@@ -133,13 +133,13 @@ ma_target = nk.models.LogStateVector(HilbertSpace)
 vs_target = nk.vqs.FullSumState(HilbertSpace, ma_target)
 inf = nkf.InfidelityOperator(vs_target)
 vs_target.parameters = {'logstate': np.log(psi0+0j)}
-print("Testing energy: ", vs_target.expect(Ham).mean)
+#print("Testing energy: ", vs_target.expect(Ham).mean)
 
-alpha=10
+alpha=6
 ansatz = RBM_clark_parity_symm(alpha=alpha, antisymmetry=antisymm,sign_rule=False)
 vstate = nk.vqs.FullSumState(HilbertSpace, ansatz)
 vstate.init_parameters(seed=549, init_fun = jax.nn.initializers.xavier_normal())
-print("Infidelity average: ", vstate.expect(inf).mean)
+#print("Infidelity average: ", vstate.expect(inf).mean)
 
 # Setting up the initial VMC part
 rule1 = exchange_excitation.ExchangeExcitationRule(graph=g)
@@ -152,7 +152,7 @@ vstate_MC.init_parameters(init_fun = jax.nn.initializers.variance_scaling(scale=
 initialize_spin1_RBM(vs = vstate_MC, L=L, HS=HilbertSpace)
 
 
-if L==8: iters_VMC = 200 #int(500 + (alpha[0]*0.5)*50)
+iters_VMC = 200  #int(500 + (alpha[0]*0.5)*50)
 
 
 log = nk.logging.JsonLog(f"test_RBM_L{L:d}_alpha{alpha:d}", mode='write', save_params=True)
@@ -161,8 +161,9 @@ log = nk.logging.JsonLog(f"test_RBM_L{L:d}_alpha{alpha:d}", mode='write', save_p
 holomorphic = True
 
 
-if L==8: lr = 8e-3 # 8e-3
+lr = 8e-3 # 8e-3
 # Initial VMC optimization
+print("An initial VMC run for warm-up")
 optimizer = optax.sgd(learning_rate=lr)
 preconditioner = nk.optimizer.SR(diag_shift=1e-4, holomorphic=True)
 driver = nk.driver.VMC(hamiltonian=Ham, optimizer=optimizer, preconditioner=preconditioner, variational_state=vstate_MC)
@@ -170,7 +171,8 @@ driver.run(n_iter=iters_VMC, out=log)
 vstate._parameters = vstate_MC.parameters
 
 # Infidelity optimization
-print("Check infidelity (MC, FS): ", vstate.expect(inf))
+#print("Check infidelity (MC, FS): ", vstate.expect(inf))
+print("Starting infidelity minimization w.r.t. the exact ground state.")
 solver = nk.optimizer.solver.cholesky 
 lr = 8e-3
 lr = optax.linear_schedule(lr, 4e-3, 5000)

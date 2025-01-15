@@ -40,16 +40,16 @@ def initialize_spin1_RBM(vs, L):
 
 
 
-L = 10 
-beta = 1 
+L = 8 
+beta = 1 # \theta = \arctan(\beta)
 samples = 2048 # 4096  
 steps = 20000 
-alpha = (12,)
+alpha = (6,)
 lr = 0.01
 parity_symm = True
 parity_antisymmetry = True
 ds = 1e-4
-use_GPU =True
+use_GPU =False
 
 
 # Defining the lattice within Netket
