@@ -25,6 +25,7 @@ fig, axes = plt.subplots(2,4,figsize=(15,11))
 
 iterations = 15000
 neg_limit = 25
+bin_edges = np.linspace(-neg_limit, 0, 100)
 model = "AFH"
 axes[0,1].set_title(r"(a) AFH ($\theta=0$)                                               ", fontsize=fontsize_title)
 for ia,alp in enumerate(alpha_list):
@@ -37,8 +38,8 @@ for ia,alp in enumerate(alpha_list):
     positive_hess_logevals = np.log10(hess_eigvals[hess_eigvals>0])
     negative_hess_logevals = np.log10(abs(hess_eigvals[hess_eigvals<0]))
 
-    axes[0,0].hist(negative_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axes[0,1].hist(positive_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[0,0].hist(negative_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[0,1].hist(positive_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
 axes[0,0].legend(loc="upper right", fontsize=fontsize_legend)
 axes[0,0].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left(-\lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
 axes[0,1].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left( \lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
@@ -58,8 +59,8 @@ for ia,alp in enumerate(alpha_list):
     positive_hess_logevals = np.log10(hess_eigvals[hess_eigvals>0])
     negative_hess_logevals = np.log10(abs(hess_eigvals[hess_eigvals<0]))
 
-    axes[0,2].hist(negative_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axes[0,3].hist(positive_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[0,2].hist(negative_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[0,3].hist(positive_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
 axes[0,2].legend(loc="upper right", fontsize=fontsize_legend)
 axes[0,2].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left(-\lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
 axes[0,3].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left( \lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
@@ -80,8 +81,8 @@ for ia,alp in enumerate(alpha_list):
     positive_hess_logevals = np.log10(hess_eigvals[hess_eigvals>0])
     negative_hess_logevals = np.log10(abs(hess_eigvals[hess_eigvals<0]))
 
-    axes[1,0].hist(negative_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axes[1,1].hist(positive_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[1,0].hist(negative_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[1,1].hist(positive_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
 axes[1,0].legend(loc="upper right", fontsize=fontsize_legend)
 axes[1,0].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left(-\lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
 axes[1,1].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left( \lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
@@ -102,8 +103,8 @@ for ia,alp in enumerate(alpha_list):
     positive_hess_logevals = np.log10(hess_eigvals[hess_eigvals>0])
     negative_hess_logevals = np.log10(abs(hess_eigvals[hess_eigvals<0]))
 
-    axes[1,2].hist(negative_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axes[1,3].hist(positive_hess_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[1,2].hist(negative_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axes[1,3].hist(positive_hess_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
     
 axes[1,2].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left(-\lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)
 axes[1,3].set_xlabel(r'$\log_{10}\left(|\lambda_{\rm Hess.}|\right)\Theta\left( \lambda_{\rm Hess.}\right)$', fontsize=fontsize_labels)

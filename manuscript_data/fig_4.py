@@ -26,7 +26,7 @@ y0_in = 1
 yf_in = 8000
 x0_in = -24
 xf_in = 10
-
+bin_edges = np.linspace(-24, 10, 100)
 transparency = 0.8
 
 fontsize_suptitle = 16+2
@@ -62,8 +62,8 @@ for ia,alp in enumerate(alpha_list):
     relE = np.load(relE_file)[0]
 
 
-    ax0.hist(qgt_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axins.hist(qgt_logevals, bins=70, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
+    ax0.hist(qgt_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axins.hist(qgt_logevals, bins=bin_edges, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
 ax0.set_ylim(y0,yf)
 ax0.set_xlim(x0,xf)
 ax0.set_xlabel(r"$\log_{10}(\lambda_{\rm QGT})$", fontsize=fontsize_labels)
@@ -95,8 +95,8 @@ for ia,alp in enumerate(alpha_list):
     relE = np.load(relE_file)[0]
 
 
-    ax1.hist(qgt_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axins.hist(qgt_logevals, bins=70, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
+    ax1.hist(qgt_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axins.hist(qgt_logevals, bins=bin_edges, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
 ax1.set_ylim(y0,yf)
 ax1.set_xlim(x0,xf)
 ax1.set_xlabel(r"$\log_{10}(\lambda_{\rm QGT})$", fontsize=fontsize_labels)
@@ -129,8 +129,8 @@ for ia,alp in enumerate(alpha_list):
     relE = np.load(relE_file)[0]
 
 
-    ax2.hist(qgt_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axins.hist(qgt_logevals, bins=70, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
+    ax2.hist(qgt_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axins.hist(qgt_logevals, bins=bin_edges, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
 ax2.set_ylim(y0,yf)
 ax2.set_xlim(x0,xf)
 ax2.set_xlabel(r"$\log_{10}(\lambda_{\rm QGT})$", fontsize=fontsize_labels)
@@ -161,8 +161,8 @@ for ia,alp in enumerate(alpha_list):
     relE = np.load(relE_file)[0]
 
 
-    ax3.hist(qgt_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-    axins.hist(qgt_logevals, bins=70, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
+    ax3.hist(qgt_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+    axins.hist(qgt_logevals, bins=bin_edges, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
 #ax.grid()
 ax3.set_ylim(y0,yf)
 ax3.set_xlim(x0,xf)

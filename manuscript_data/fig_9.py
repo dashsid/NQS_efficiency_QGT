@@ -26,7 +26,7 @@ y0_in = 1
 yf_in = 4000
 x0_in = -24
 xf_in = 10
-
+bin_edges = np.linspace(-24, 10, 100)
 transparency = 0.8
 
 fontsize_suptitle = 16+2
@@ -71,8 +71,8 @@ for iax, ax0 in enumerate(flattened_axes):
         relE = np.load(relE_file)[0]
 
 
-        ax0.hist(qgt_logevals, bins=70, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
-        axins.hist(qgt_logevals, bins=70, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
+        ax0.hist(qgt_logevals, bins=bin_edges, alpha=transparency, label=rf"$\alpha={alp}$, "+r"$\mathcal{I}$"+f"={infidelity:.2e}", color=colors[-ia-1])#, edgecolor='black')
+        axins.hist(qgt_logevals, bins=bin_edges, alpha=transparency, cumulative=-1,color=colors[-ia-1])#, edgecolor='black')
 
 
     ax0.set_ylim(y0,yf)
